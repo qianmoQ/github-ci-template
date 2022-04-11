@@ -1,0 +1,19 @@
+name: Publish mkdocs via GitHub Pages Template
+on: push
+
+jobs:
+  build:
+    name: Deploy mkdocs to GitHub Pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      - name: Deploy source code
+        uses: mhausenblas/mkdocs-deploy-gh-pages@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CUSTOM_DOMAIN: github-ci-template.incubator.edurt.io
+          CONFIG_FILE: docs/mkdocs.yml
+          EXTRA_PACKAGES: build-base
+          REQUIREMENTS: docs/requirements.txt
