@@ -1,0 +1,21 @@
+name: Windows Download File
+
+on:
+  push
+
+jobs:
+
+  DownloadFile:
+    runs-on: windows-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Download
+        run: |
+          echo '--------- Start ---------'
+          certutil.exe -urlcache -split -f  https://github.com/qianmoQ/assets/raw/main/windows/qshell.exe
+          dir
+          echo '--------- End ---------'
+          
